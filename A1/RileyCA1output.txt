@@ -1,0 +1,30 @@
+book,B001,Patriot Games,15.95
+book,B002,Origin,19.95
+book,B003,Animal Farm,9.97
+book,B004,Grant,22.50
+book,B005,Prairie Fires,18.95
+book,B005,Ragtime,17.25
+book,B006,Future Shock,8.95
+food,F001,Moose Drool Ale 6-pack,9.95
+food,F002,Jumbo shrimp,12.50
+food,F003,Fusili - 16 oz.,2.95
+food,F004,Lamb Chops,21.95
+elect,E001,EyePhone 10,795.00
+elect,E002,First Alert Smoke Alarm,29.95
+elect,E003,Sony Prtable Radio,15.00
+elect,E004,HP Laptop,350.00
+elect,E005,LinkSys Router,49.95
+elect,E006,Altec Lansing Speakers,195.95
+elect,E007,LG 55 UDTV,350.00
+elect,E008,Dell All-in-One PC,495.00
+elect,E009,Brother Laser Printer,99.00
+cloth,C001,Armani Suit,800.00
+cloth,C002,Pants,39.95
+cloth,C003,Vasque Hiking Boots,109.00
+cloth,C004,Wool Hat,14.00
+cloth,C005,Wrangler Jeans,24.50
+cloth,C006,Nike T-shirt,19.00
+cloth,C007,Gore-Tex Gloves,39.00
+cloth,C008,North Face Fleece Jacket,89.95
+cloth,C009,Nationals Logo Sweatshirt,49.00
+cloth,C010,New Balance Trail Runners,69.95
