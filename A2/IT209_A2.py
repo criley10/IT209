@@ -3,12 +3,12 @@
 """
 
 class Student():
-	totalEnrollment = 0
-	majors = ["Acctg", "Art", "CSci", "Hist", "IST", "Math", "Physics"]
 	"""Student object
 		Passed variabes -- name, major, enrolled, credits, qpoints
 		Calculated variables -- g_num, status, gpa, switchName
 	"""
+	majors = ["Acctg", "Art", "CSci", "Hist", "IST", "Math", "Physics"]
+	totalEnrollment = 0
 	def __init__(self, name, major='IST', enrolled='y', credits=0,qpoints=0):
 		Student.totalEnrollment += 1
 		self.g_num = "G{0:05d}".format(Student.totalEnrollment)
@@ -27,7 +27,6 @@ class Student():
 		self.gpa = Student.gpa(self)
 		self.switchName = self.name.split(',')[1].strip()
 		self.switchName = self.switchName + " " + self.name.split(',')[0].strip()
-
 		
 	def __str__(self):
 		return "{0}, {1}, {2}, {3}, active: {4}, credits = {5}, gpa = {6:1.3}".format(self.switchName, 
@@ -57,6 +56,10 @@ class Student():
 			return True
 		else:
 			return False
+
+	def setMajor(self, m):
+		self.major = major
+		return True
 
 #Global Code
 
