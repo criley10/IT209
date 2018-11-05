@@ -91,6 +91,7 @@ class Player(object):
 		self.enemyBoard.createBoard()
 		self.loss = False
 		self.enemy = None
+		self.sinks = 0
 		
 
 	def setLocations(self):
@@ -101,30 +102,54 @@ class Player(object):
 			global p1
 			self.enemy = p1
 
-		self.playerBoard.printBoard()
-		self.battleship.setLocation(input("Please enter 4 coordinate values to set your Battleship \nex: 'X1 X2 X3 X4'\n>").strip().split(' '))
-		self.playerBoard.createShip(self.battleship)
-		bLoc = self.battleship.getLocation()
-		os.system('cls')
-		self.playerBoard.printBoard()
-		self.cruiser.setLocation(input("Please enter 3 coordinate values to set your Battleship \nex: 'X1 X2 X3'\n>").strip().split(' '))
-		self.playerBoard.createShip(self.cruiser)
-		cLoc = self.cruiser.getLocation()
-		os.system('cls')
-		self.playerBoard.printBoard()
-		self.destroyer.setLocation(input("Please enter 2 coordinate values to set your Battleship \nex: 'X1 X2'\n>").strip().split(' '))
-		self.playerBoard.createShip(self.destroyer)
-		dLoc = self.destroyer.getLocation()
-		os.system('cls')
-		self.playerBoard.printBoard()
+		for n in self.ships:
+			while True:
+				os.system('cls')
+				print('Player {} choose the location for your ships:'.format(self.num))
+				self.playerBoard.printBoard()
+				coordList = input("Please enter {0} sequential coordinate values to set your {1}\nPlease enter the stated number of coordinates in the format 'X1 X2 ...'\n>".format(
+					n.health, n.name)).strip().split(' ')
+				if len(coordList) != n.health:
+					input("Invalid number of coordinates.\nPlease enter the specified number of coordinates.\nPress any key to try again.")
+					continue
+
+				for x in coordList:
+					if x in self.shipCoords:
+						input("Ships can not be overlapping.\nPlease enter valid coordinates where there is not another ship.\nPress any key to try again.")
+						break
+					if x not in letterDict:
+						input("Invalid coordinate of '{0}'\nPlease enter a valid coordinate from the board.\nPress any key to try again.".format(x))
+						break
+				else:
+					if sequential(coordList) == False:
+						input("Coordinates must be horizontal or vertical and sequential.\nPress any key to try again.")
+						continue
+					else:
+						n.setLocation(coordList)
+						for y in coordList:
+							self.shipCoords.append(y)
+						self.playerBoard.createShip(n)
+						os.system('cls')
+						break
+				continue	
+			
+		# self.playerBoard.printBoard()
+		# self.cruiser.setLocation(input("Please enter 3 coordinate values to set your Battleship \nex: 'X1 X2 X3'\n>").strip().split(' '))
+		# self.playerBoard.createShip(self.cruiser)
+		# os.system('cls')
+		# self.playerBoard.printBoard()
+		# self.destroyer.setLocation(input("Please enter 2 coordinate values to set your Battleship \nex: 'X1 X2'\n>").strip().split(' '))
+		# self.playerBoard.createShip(self.destroyer)
+		# os.system('cls')
+		# self.playerBoard.printBoard()
 		for n in self.ships:
 			for x in n.getLocation():
 				self.shipCoords.append(x)
-		os.system('cls')
 
 	def turn(self):
-		print("Player {0}'s turn:".format(self.num))
+		print('Enemy Board')
 		self.enemyBoard.printBoard()
+		print('Player {} Board'.format(self.num))
 		self.playerBoard.printBoard()
 		shot = input("Please select a coordinate for your turn \nex: 'X1'\n>").strip()
 		if shot in self.enemy.shipCoords:
@@ -133,19 +158,57 @@ class Player(object):
 				if shot in n.getLocation():
 					n.hit()
 					if n.sunk:
-						print('Enemy {} has been sunk!'.format(n.name)) 
+						print('Enemy {} has been sunk!'.format(n.name))
+			self.sinks += 1
 			self.enemyBoard.addShot(shot, 'X')
+			if self.sinks == 3:
+				print('loss')
+				self.enemy.loss = True
+				return
 		else:
 			print('MISS')
 			self.enemyBoard.addShot(shot, 'O')
+		print('Enemy Board')
+		self.enemyBoard.printBoard()
+		print('Player Board')
+		self.playerBoard.printBoard()
+		input('Please press any key to complete your turn...')
+		os.system('cls')
 
-
+def sequential(coords):
+	last = ' '
+	for n in coords:
+		if last == ' ':
+			last = n
+			continue
+		else:
+			if (abs(letterDict[n] - letterDict[last]) == 1) or (abs(letterDict[n] - letterDict[last]) == 8):
+				return True
+			else:
+				return False
 
 p1 = Player(1)
 p2 = Player(2)
+os.system('cls')
 p1.setLocations()
+os.system('cls')
+input('Please switch players\nPress any key when ready')
 p2.setLocations()
 
+while p1.loss == False and p2.loss == False:
+	p1.turn()
+	os.system('cls')
+	input('Please switch players\nPress any key when ready')
+	if p2.loss == True:
+		break
+	p2.turn()
+	os.system('cls')
+	input('Please switch players\nPress any key when ready')
+
+if p2.loss:
+	print('Player 1 wins!!!')
+else:
+	print('Player 2 wins!!!')
 
 
 
