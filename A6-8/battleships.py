@@ -132,16 +132,7 @@ class Player(object):
 						os.system('cls')
 						break
 				continue	
-			
-		# self.playerBoard.printBoard()
-		# self.cruiser.setLocation(input("Please enter 3 coordinate values to set your Battleship \nex: 'X1 X2 X3'\n>").strip().split(' '))
-		# self.playerBoard.createShip(self.cruiser)
-		# os.system('cls')
-		# self.playerBoard.printBoard()
-		# self.destroyer.setLocation(input("Please enter 2 coordinate values to set your Battleship \nex: 'X1 X2'\n>").strip().split(' '))
-		# self.playerBoard.createShip(self.destroyer)
-		# os.system('cls')
-		# self.playerBoard.printBoard()
+		
 		for n in self.ships:
 			for x in n.getLocation():
 				self.shipCoords.append(x)
@@ -159,7 +150,7 @@ class Player(object):
 					n.hit()
 					if n.sunk:
 						print('Enemy {} has been sunk!'.format(n.name))
-			self.sinks += 1
+						self.sinks += 1
 			self.enemyBoard.addShot(shot, 'X')
 			if self.sinks == 3:
 				print('loss')
@@ -197,11 +188,13 @@ p2.setLocations()
 
 while p1.loss == False and p2.loss == False:
 	p1.turn()
-	os.system('cls')
-	input('Please switch players\nPress any key when ready')
 	if p2.loss == True:
 		break
+	os.system('cls')
+	input('Please switch players\nPress any key when ready')
 	p2.turn()
+	if p1.loss == True:
+		break
 	os.system('cls')
 	input('Please switch players\nPress any key when ready')
 

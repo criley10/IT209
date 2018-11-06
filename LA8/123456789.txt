@@ -1,0 +1,8 @@
+Amount of 500 deposited to account number 123456789.
+New balance: 500
+Amount of 20 withdrawn from account number 123456789.
+New balance: 480
+Amount of 500 deposited to account number 123456789.
+New balance: 500
+Amount of 20 withdrawn from account number 123456789.
+New balance: 480
