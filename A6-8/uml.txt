@@ -1,0 +1,46 @@
+Classes:
+Ship:
+	health: int
+	location: list
+	sunk: boolean
+	hit()
+	setLocation(list)
+	getLocation(): list
+
+Cruiser(Ship):
+	mapCode: str
+	name: str
+
+Battleship(Ship):
+	mapCode: str
+	name: str
+
+Destroyer(Ship):
+	mapCode: str
+	name: str
+
+Board:
+	board: str
+	args: list
+	createBoard()
+	printBoard()
+	createShip(Ship)
+	addShot(str, str)
+
+Player:
+	num: int
+	cruiser: Cruiser
+	battleship: Battleship
+	destroyer: destroyer
+	ships: list
+	shipCoors: list
+	playerBoard: Board
+	enemyBoard: Board
+	loss: boolean
+	enemy: Player
+	sinks: int
+	setLocations()
+	turn()
+
+Functions:
+sequential(list): boolean

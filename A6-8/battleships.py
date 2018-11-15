@@ -105,7 +105,7 @@ class Player(object):
 		for n in self.ships:
 			while True:
 				os.system('cls')
-				print('Player {} choose the location for your ships:'.format(self.num))
+				print('Player {}, choose the location for your ships:'.format(self.num))
 				self.playerBoard.printBoard()
 				coordList = input("Please enter {0} sequential coordinate values to set your {1}\nPlease enter the stated number of coordinates in the format 'X1 X2 ...'\n>".format(
 					n.health, n.name)).strip().split(' ')
@@ -198,6 +198,7 @@ while p1.loss == False and p2.loss == False:
 	os.system('cls')
 	input('Please switch players\nPress any key when ready')
 
+os.system('cls')
 if p2.loss:
 	print('Player 1 wins!!!')
 else:
