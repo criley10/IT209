@@ -30,48 +30,86 @@ class Employee(object):
 		return self.age() > 65
 
 	@property
-	def title(self, title):
+	def job_title(self):
+		return self.__job_title
+
+	@job_title.setter
+	def job_title(self, title):
 		self.__job_title = title
 		return True
 
-	@title.getter
-	def title(self):
-		return self.__job_title
-
 	@property
+	def salary(self):
+		return self.__salary
+
+	@salary.setter
 	def salary(self, salary):
 		self.__salary = salary
 		return True
-
-	@salary.getter
-	def salary(self):
-		return self.__salary
 
 	def equalEmp(self, e):
 		if type(e) == Employee and self.__name == e.__name and self.__empl_num == e.__empl_num:
 			return True
 		else:
 			return False
-	def name(self, e):
-		print(e.__name)
+
+	@property
+	def name(self):
+		return self.__name
+
+	@name.setter
+	def name(self, n):
+		self.__name = n
+		return True
+
+	@property
+	def empl_num(self):
+		return self.__empl_num
+
+	@empl_num.setter
+	def empl_num(self, e):
+		self.__empl_num = e
+		return True
+
+	@property
+	def birth_month(self):
+		return self.__birth_month
+
+	@birth_month.setter
+	def birth_month(self, m):
+		self.__birth_month = m
+		return True
+
+	@property
+	def birth_year(self):
+		return self.__birth_year
+
+	@birth_year.setter
+	def birth_year(self, y):
+		self.__birth_year = y
+		return True	
 
 #global code
 e1 = Employee('E34568', 'David Miller', 1960, 3)
-e1.setTitle('Accountant')
-e1.setSalary(65000)
+e1.job_title = 'Accountant'
+e1.salary = 65000
 e2 = Employee('E22154', 'Margarete Smith', 1972, 10)
-e2.setTitle('Vice President')
-e2.setSalary(115000)
+e2.job_title = 'Vice President'
+e2.salary = 115000
 e3 = Employee('E43344', 'Chase Smedley', 1982, 8) 
-e3.setTitle('Salesman')
-e3.setSalary(75000)
-e4 = Employee('E12157', 'Daniel Arledge', 1952, 11) 
-e4.setTitle('Lawyer')
-e4.setSalary(92000)
+e3.job_title = 'Salesman'
+e3.salary = 75000
 
 print("Start of Employee class definition program")
 print("e1 =" , e1)
 print("e2 =" , e2)
 print("e3 =" , e3)
-print("e4 =" , e4)
+print( e3.empl_num, e3.name, e3.salary, e3.birth_year, e3.birth_month)
+e3.empl_num = 'E43345'
+e3.name = 'Chuck Smith'
+e3.salary = 1000000000
+e3.birth_year = 1977
+e3.birth_month = 12
+print( e3.empl_num, e3.name, e3.salary, e3.birth_year, e3.birth_month)
+print("e3 =" , e3)
 print("End of Employee class definition program")
