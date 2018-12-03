@@ -144,6 +144,7 @@ class Player(object):
 		self.playerBoard.printBoard()
 		shot = input("Please select a coordinate for your turn \nex: 'X1'\n>").strip()
 		if shot in self.enemy.shipCoords:
+			os.system('cls')
 			print('HIT')
 			for n in self.enemy.ships:
 				if shot in n.getLocation():
@@ -157,11 +158,13 @@ class Player(object):
 				self.enemy.loss = True
 				return
 		else:
+			os.system('cls')
 			print('MISS')
 			self.enemyBoard.addShot(shot, 'O')
+			self.enemy.playerBoard.addShot(shot, 'O')
 		print('Enemy Board')
 		self.enemyBoard.printBoard()
-		print('Player Board')
+		print('Player {} Board'.format(self.num))
 		self.playerBoard.printBoard()
 		input('Please press any key to complete your turn...')
 		os.system('cls')
@@ -203,6 +206,8 @@ if p2.loss:
 	print('Player 1 wins!!!')
 else:
 	print('Player 2 wins!!!')
+
+
 
 
 
